@@ -1,38 +1,22 @@
 <h1>Listing visitors</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Photo</th>
-      <th>Name</th>
-      <th>Department</th>
-      <th>Email</th>
-      <th>Phone</th>
-      <th>Reason</th>
-      <th>Date & Time of Visit</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @visitors.each do |visitor| %>
-      <tr>
-        <td><img src="<%= visitor.photo %>"></td>
-        <td><%= visitor.name %></td>
-        <td><%= visitor.department %></td>
-        <td><%= visitor.email %></td>
-        <td><%= visitor.phone %></td>
-        <td><%= visitor.reason %></td>
-        <td><%= visitor.created_at %></td>
-        <td><%= link_to 'Show', visitor %></td>
-        <td><%= link_to 'Edit', edit_visitor_path(visitor) %></td>
-        <td><%= link_to 'Destroy', visitor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<ul class="list-group">
+  <% @visitors.each do |visitor| %>
+    <li class="list-group-item">
+      <img src="<%= visitor.photo %>">
+      <%= visitor.name %>
+      <%= visitor.department %>
+      <%= visitor.email %>
+      <%= visitor.phone %>
+      <%= visitor.reason %>
+      <%= visitor.created_at %>
+      <%= link_to 'Show', visitor %>
+      <%= link_to 'Edit', edit_visitor_path(visitor) %>
+      <%= link_to 'Destroy', visitor, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+  
+</ul>
 
 <br>
 
