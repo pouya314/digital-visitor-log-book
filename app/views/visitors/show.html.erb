@@ -10,5 +10,30 @@
   <%= @visitor.photo %>
 </p>
 
+<p>
+  <strong>Visit time:</strong>
+  <%= @visitor.visit_time %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @visitor.department %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @visitor.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @visitor.phone %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @visitor.reason %>
+</p>
+
 <%= link_to 'Edit', edit_visitor_path(@visitor) %> |
 <%= link_to 'Back', visitors_path %>

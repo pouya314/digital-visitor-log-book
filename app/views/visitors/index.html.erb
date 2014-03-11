@@ -5,6 +5,11 @@
     <tr>
       <th>Name</th>
       <th>Photo</th>
+      <th>Visit time</th>
+      <th>Department</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Reason</th>
       <th></th>
       <th></th>
       <th></th>
@@ -16,6 +21,11 @@
       <tr>
         <td><%= visitor.name %></td>
         <td><%= visitor.photo %></td>
+        <td><%= visitor.visit_time %></td>
+        <td><%= visitor.department %></td>
+        <td><%= visitor.email %></td>
+        <td><%= visitor.phone %></td>
+        <td><%= visitor.reason %></td>
         <td><%= link_to 'Show', visitor %></td>
         <td><%= link_to 'Edit', edit_visitor_path(visitor) %></td>
         <td><%= link_to 'Destroy', visitor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
