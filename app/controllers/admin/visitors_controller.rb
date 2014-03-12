@@ -1,10 +1,10 @@
-class VisitorsController < ApplicationController
+class Admin::VisitorsController < ApplicationController
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
 
   # GET /visitors
   # GET /visitors.json
   def index
-    @visitors = Visitor.all
+    @visitors = Visitor.order(created_at: :desc)
   end
 
   # GET /visitors/1
@@ -28,11 +28,11 @@ class VisitorsController < ApplicationController
 
     respond_to do |format|
       if @visitor.save
-        format.html { redirect_to root_path, notice: 'Thank you for registering your details. You may now proceed!' }
+        format.html { redirect_to admin_visitor_path(@visitor), notice: 'Visitor was successfully created.' }
         # format.json { render action: 'show', status: :created, location: @visitor }
       else
         format.html { render action: 'new' }
-        format.json { render json: @visitor.errors, status: :unprocessable_entity }
+        # format.json { render json: @visitor.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -42,11 +42,11 @@ class VisitorsController < ApplicationController
   def update
     respond_to do |format|
       if @visitor.update(visitor_params)
-        format.html { redirect_to @visitor, notice: 'Visitor was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to admin_visitor_path(@visitor), notice: 'Visitor was successfully updated.' }
+        # format.json { head :no_content }
       else
         format.html { render action: 'edit' }
-        format.json { render json: @visitor.errors, status: :unprocessable_entity }
+        # format.json { render json: @visitor.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,7 +56,7 @@ class VisitorsController < ApplicationController
   def destroy
     @visitor.destroy
     respond_to do |format|
-      format.html { redirect_to visitors_url }
+      format.html { redirect_to admin_visitors_url }
       format.json { head :no_content }
     end
   end

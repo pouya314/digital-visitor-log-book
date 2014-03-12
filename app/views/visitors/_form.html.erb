@@ -24,13 +24,21 @@
     </div>
   </div>
   
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div id="currently-saved-photo">
+    <% unless @visitor.photo == nil %>
+      <img src="<%= @visitor.photo %>"><br />
+      <div>Note: this image is currently saved for you, if you want to change it, simply take another photo!</div>
+    <% end %>
   </div>
+
   <div class="field" style="display:none;">
     <%= f.label :photo %><br>
     <%= f.text_area :photo %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
   <div class="field">
     <%= f.label :department %><br>
@@ -116,6 +124,9 @@
       var data = canvas.toDataURL('image/png');
       $( "textarea#visitor_photo" ).val(data);
       $( "#actionbtns" ).replaceWith( "<span>Cool! we will use this.</span>" );
+      
+      var existing = document.getElementById('currently-saved-photo');
+      if (existing !== null) $( "#currently-saved-photo" ).hide();
     });
 
     $( "#isnotok" ).click(function() {

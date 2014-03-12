@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <img src="<%= @visitor.photo %>">
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @visitor.name %>
+</p>
+
+<p>
+  <strong>Date and Time of Visit:</strong>
+  <%= @visitor.created_at %>
+</p>
+
+
+<p>
+  <strong>Department Visited:</strong>
+  <%= @visitor.department %>
+</p>
+
+<p>
+  <strong>Reason:</strong>
+  <%= @visitor.reason %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @visitor.email %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @visitor.phone %>
+</p>
+
+<%= link_to 'Edit', edit_admin_visitor_path(@visitor) %> |
+<%= link_to 'Back', admin_visitors_path %>

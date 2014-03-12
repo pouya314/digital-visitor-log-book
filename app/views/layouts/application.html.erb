@@ -7,6 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  
+  <% if notice %>
+    <div id="notice" class="notice alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert && alert != "You need to sign in or sign up before continuing." %>
+    <div id="alert" class="alert alert-warning alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= alert %>
+    </div>
+  <% end %>
+  
 
 <%= yield %>
 
