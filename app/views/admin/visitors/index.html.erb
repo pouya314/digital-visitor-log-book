@@ -1,5 +1,16 @@
 <h1>Listing visitors</h1>
 
+<%= form_tag('/admin/visitors', method: :get) do -%>
+  <div>
+    <%= label_tag 'namecontains', "Name Contains" %><br />
+    <%= text_field_tag 'namecontains', params[:namecontains] %>
+  </div>
+  
+  <div><%= submit_tag 'Go' %></div>
+<% end -%>
+
+<%= link_to "Show all", admin_visitors_path %>
+
 <ul class="list-group">
   <% @visitors.each do |visitor| %>
     <li class="list-group-item">

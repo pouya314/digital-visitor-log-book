@@ -6,6 +6,10 @@ class Admin::VisitorsController < ApplicationController
   # GET /visitors.json
   def index
     @visitors = Visitor.order(created_at: :desc)
+    
+    if params[:namecontains]
+      @visitors = @visitors.where('name like ?', "%#{params[:namecontains]}%")
+    end
   end
 
   # GET /visitors/1
