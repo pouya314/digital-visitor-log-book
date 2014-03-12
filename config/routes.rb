@@ -1,4 +1,5 @@
 FsRapidProto::Application.routes.draw do
+  devise_for :admins
   get "index/welcome"
   resources :visitors, only: [:new, :create]
 

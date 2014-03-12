@@ -1,5 +1,6 @@
 class Admin::VisitorsController < ApplicationController
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin!
 
   # GET /visitors
   # GET /visitors.json
