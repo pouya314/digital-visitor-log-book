@@ -25,16 +25,16 @@
   </div>
   <div class="field">
     <%= f.label :created_at_gteq, "DateTime between" %>
-    <%= f.datetime_select :created_at_gteq %>
+    <%= f.datetime_select :created_at_gteq, include_blank: true %>
     <%= f.label :created_at_lteq, "and" %>
-    <%= f.datetime_select :created_at_lteq %>   
+    <%= f.datetime_select :created_at_lteq, include_blank: true %>   
   </div>
   <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
 
 <%= link_to "Show all", admin_visitors_path %><br />
 
-Returned records # <%= @visitors.size %><br />
+Returned records # <%= @size_returned %><br />
 
 <div>
   <%= paginate @visitors %>

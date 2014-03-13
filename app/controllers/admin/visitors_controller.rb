@@ -13,6 +13,7 @@ class Admin::VisitorsController < ApplicationController
     
     
     @search = Visitor.search(params[:q])
+    @size_returned = @search.result.size
     @visitors = @search.result.order(created_at: :desc).page(params[:page]).per(5)
   end
 
