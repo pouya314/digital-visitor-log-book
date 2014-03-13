@@ -5,11 +5,15 @@ class Admin::VisitorsController < ApplicationController
   # GET /visitors
   # GET /visitors.json
   def index
-    @visitors = Visitor.order(created_at: :desc)
+    # @visitors = Visitor.order(created_at: :desc)
+    # 
+    # if params[:namecontains]
+    #   @visitors = @visitors.where('name like ?', "%#{params[:namecontains]}%")
+    # end
     
-    if params[:namecontains]
-      @visitors = @visitors.where('name like ?', "%#{params[:namecontains]}%")
-    end
+    
+    @search = Visitor.search(params[:q])
+    @visitors = @search.result.order(created_at: :desc)
   end
 
   # GET /visitors/1
