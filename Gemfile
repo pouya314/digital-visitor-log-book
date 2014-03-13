@@ -52,3 +52,6 @@ gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
 
 gem "kaminari"
 
+# HEROKU Gems
+gem 'rails_12factor', group: :production
+ruby "2.1.1"
