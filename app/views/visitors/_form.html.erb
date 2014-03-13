@@ -1,4 +1,4 @@
-<%= form_for(@visitor) do |f| %>
+<%= form_for(@visitor, :html => {:role => 'form'}) do |f| %>
   <% if @visitor.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@visitor.errors.count, "error") %> prohibited this visitor from being saved:</h2>
@@ -11,54 +11,64 @@
     </div>
   <% end %>
 
-  <div id="vid">
-    <video id="video"></video>
-    <a id="startbutton">Take photo</a>
+  <div class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <div id="vid">
+            <video id="video"></video><br />
+            <a id="startbutton" class="btn btn-primary capture-btn"> <i class="fa fa-camera fa-2x"></i> CAPTURE</a>
+          </div>
+
+          <div id="can" style="display:none;">
+            <canvas id="canvas"></canvas>
+            <div id="actionbtns">  
+              <a id="ok" class="btn btn-success btn-looking-good"><i class="fa fa-thumbs-up fa-2x"></i> LOOKING GOOD</a>
+              <a id="isnotok" class="btn btn-danger btn-one-more-time"><i class="fa fa-thumbs-down fa-2x"></i> ONCE MORE</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-md-6">
+          <div id="currently-saved-photo">
+            <% unless @visitor.photo == "" or @visitor.photo == nil %>
+              <img src="<%= @visitor.photo %>"><br />
+              <p class="text-warning bg-warning current-pic">Note: this image is currently saved for you, if you want to change it, simply take another photo on the left.</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
   </div>
 
-  <div id="can" style="display:none;">
-    <canvas id="canvas"></canvas>
-    <div id="actionbtns">  
-      <a id="ok">OK - Use this photo</a>
-      <a id="isnotok">No - Take another photo</a>
-    </div>
-  </div>
-  
-  <div id="currently-saved-photo">
-    <% unless @visitor.photo == nil %>
-      <img src="<%= @visitor.photo %>"><br />
-      <div>Note: this image is currently saved for you, if you want to change it, simply take another photo!</div>
-    <% end %>
-  </div>
-
-  <div class="field" style="display:none;">
+  <div class="form-group" style="display:none;">
     <%= f.label :photo %><br>
     <%= f.text_area :photo %>
   </div>
   
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <strong>Full Name</strong><br>
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :department %><br>
+  <div class="form-group">
+    <strong>Email Address</strong><br>
+    <%= f.text_field :email, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <strong>Phone Number</strong><br>
+    <%= f.text_field :phone, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <strong>Department</strong><br>
     <%#= f.text_field :department %>
-    <%= f.select :department, ['HR', 'R&D', 'Finance', 'Support'], include_blank: true %>
+    <%#= f.select :department, ['HR', 'R&D', 'Finance', 'Support'], include_blank: true, class: 'form-control' %>
+    <%= f.select(:department, ['HR', 'R&D', 'Finance', 'Support'], {include_blank: true}, {class: "form-control"}) %>
+    
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
-  </div>
-  <div class="field">
-    <%= f.label :reason %><br>
-    <%= f.text_area :reason %>
+  <div class="form-group">
+    <strong>Reason of visit</strong><br>
+    <%= f.text_area :reason, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit class: "btn btn-primary" %>
+    <%= f.submit class: "btn btn-success btn-lg btn-block" %>
   </div>
 <% end %>
 
@@ -70,7 +80,7 @@
         video        = document.querySelector('#video'),
         canvas       = document.querySelector('#canvas'),
         startbutton  = document.querySelector('#startbutton'),
-        width = 200,
+        width = 300,
         height = 0;
 
     navigator.getMedia = ( navigator.getUserMedia ||
@@ -124,7 +134,7 @@
     $( "#ok" ).click(function() {
       var data = canvas.toDataURL('image/png');
       $( "textarea#visitor_photo" ).val(data);
-      $( "#actionbtns" ).replaceWith( "<span>Cool! we will use this.</span>" );
+      $( "#actionbtns" ).replaceWith( "<br /><p class=\"bg-success text-center good-image\">Done!</p>" );
       
       var existing = document.getElementById('currently-saved-photo');
       if (existing !== null) $( "#currently-saved-photo" ).hide();

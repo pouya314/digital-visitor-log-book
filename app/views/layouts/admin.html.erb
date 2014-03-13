@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FS Digital Visitor Registry Book</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <% if notice %>
+    <div id="notice" class="notice alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= notice %>
+    </div>
+  <% end %>
+
+  <% if alert %>
+    <div id="alert" class="alert alert-warning alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= alert %>
+    </div>
+  <% end %>
+  
+  <% if admin_signed_in? %>
+      Currently siged in as <strong><%= current_admin.email %></strong> | <%= link_to "Sign out", destroy_admin_session_path, method: :delete %>
+  <% end %>
+  
+
+<%= yield %>
+
+</body>
+</html>

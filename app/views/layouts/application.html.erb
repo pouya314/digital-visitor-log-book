@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>FsRapidProto</title>
+  <title>FS Digital Visitor Registry Book</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
+  <!-- font awesome -->
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  
+  
+  <style type="text/css" media="screen">
+    body {
+      background-image:url(<%= asset_path "Untitled-1.jpg" %>);
+    }
+  </style>
 </head>
 <body>
-  
-  <% if notice %>
-    <div id="notice" class="notice alert alert-success alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= notice %>
-    </div>
-  <% end %>
 
-  <% if alert && alert != "You need to sign in or sign up before continuing." %>
-    <div id="alert" class="alert alert-warning alert-dismissable">
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-      <%= alert %>
-    </div>
-  <% end %>
   
-  <% if admin_signed_in? %>
-      Currently siged in as <strong><%= current_admin.email %></strong> | <%= link_to "Sign out", destroy_admin_session_path, method: :delete %>
-  <% end %>
-  
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <% if notice %>
+        <div id="notice" class="notice alert alert-success alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= notice %>
+        </div>
+      <% end %>
 
-<%= yield %>
+      <% if alert %>
+        <div id="alert" class="alert alert-warning alert-dismissable">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= alert %>
+        </div>
+      <% end %>
+      
+      <%= yield %>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
+
+
 
 </body>
 </html>

@@ -1,13 +1,9 @@
-<h1>
-  Welcome
-</h1>
-<p>
-  <%= image_tag("fs-logo.jpg") %>
-</p>
-
-<p>
-  <%= link_to "NEW VISITORS PLEASE REGISTER HERE", new_visitor_path %>
-</p>
-
-<p>
-  <%= link_to "Admin", admin_visitors_path %>
+<div class="text-center text-primary">
+  <h2>
+    Welcome to F-Secure<br /><br />
+    (Digital Visitor Registry Book)
+  </h2>
+  <p>
+    <%= link_to "PLEASE REGISTER HERE", new_visitor_path, class: "btn btn-primary btn-lg register-btn" %>
+  </p>
+</div>
