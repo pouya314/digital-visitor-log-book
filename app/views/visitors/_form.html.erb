@@ -42,7 +42,8 @@
   </div>
   <div class="field">
     <%= f.label :department %><br>
-    <%= f.text_field :department %>
+    <%#= f.text_field :department %>
+    <%= f.select :department, ['HR', 'R&D', 'Finance', 'Support'], include_blank: true %>
   </div>
   <div class="field">
     <%= f.label :email %><br>
