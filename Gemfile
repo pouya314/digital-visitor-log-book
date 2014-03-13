@@ -49,3 +49,6 @@ gem 'bootstrap-sass', '~> 3.1.1'
 gem 'devise'
 
 gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4"
+
+gem "kaminari"
+

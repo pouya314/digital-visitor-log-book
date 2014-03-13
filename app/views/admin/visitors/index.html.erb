@@ -36,6 +36,9 @@
 
 Returned records # <%= @visitors.size %><br />
 
+<div>
+  <%= paginate @visitors %>
+</div>
 <ul class="list-group">
   <% @visitors.each do |visitor| %>
     <li class="list-group-item">

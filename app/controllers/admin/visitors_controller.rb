@@ -13,7 +13,7 @@ class Admin::VisitorsController < ApplicationController
     
     
     @search = Visitor.search(params[:q])
-    @visitors = @search.result.order(created_at: :desc)
+    @visitors = @search.result.order(created_at: :desc).page(params[:page]).per(5)
   end
 
   # GET /visitors/1
