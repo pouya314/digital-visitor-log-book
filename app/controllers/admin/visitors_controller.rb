@@ -1,4 +1,6 @@
 class Admin::VisitorsController < ApplicationController
+  layout "admin"
+  
   before_action :set_visitor, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_admin!
 

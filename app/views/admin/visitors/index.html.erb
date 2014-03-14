@@ -1,63 +1,44 @@
-<h1>Listing visitors</h1>
+<% content_for :filteringSection do %>
 
+    <!-- RANSACK -->
+    <%= search_form_for @search, url: admin_visitors_path do |f| %>
+      <div class="field">
+        <%= f.label :name_cont, "Name contains" %><br />
+        <%= f.text_field :name_cont %>
+      </div>
+      <div class="field">
+        <%= f.label :created_at_gteq, "Date/Time From" %><br />
+        <%= f.datetime_select :created_at_gteq, include_blank: true %><br />
+        <%= f.label :created_at_lteq, "Date/Time To" %><br />
+        <%= f.datetime_select :created_at_lteq, include_blank: true %>   
+      </div>
+      <div class="field">
+        <%= f.label :department_eq, "Department" %><br />
+        <%= f.select :department_eq, ['HR', 'R&D', 'Finance', 'Support'], include_blank: true %>
+      </div>
+      <div class="field">
+        <%= f.label :email_cont, "Email" %><br />
+        <%= f.text_field :email_cont %>
+      </div>
+      <div class="field">
+        <%= f.label :phone_cont, "Phone" %><br />
+        <%= f.text_field :phone_cont %>
+      </div>
+      <div class="field">
+        <%= f.label :reason_cont, "Reason" %><br />
+        <%= f.text_field :reason_cont %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Submit" %> or <%= link_to "Clear Filters", admin_visitors_path %>
+      </div>
+    <% end %>
+    
+    <hr>
 
-<!--
+    Returned records # <%= @size_returned %><br />
 
-######## THIS WAS BEFORE WE DECIDED TO GIVE "RANSACK" A TRY! ######## 
-
-
-<%#= form_tag('/admin/visitors', method: :get) do -%>
-  <div>
-    <%#= label_tag 'namecontains', "Name Contains" %><br />
-    <%#= text_field_tag 'namecontains', params[:namecontains] %>
-  </div>
-  
-  <div><%#= submit_tag 'Go' %></div>
-<%# end -%>
--->
-
-
-<!-- RANSACK -->
-<%= search_form_for @search, url: admin_visitors_path do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, "Name contains" %>
-    <%= f.text_field :name_cont %>
-  </div>
-  <div class="field">
-    <%= f.label :created_at_gteq, "DateTime between" %>
-    <%= f.datetime_select :created_at_gteq, include_blank: true %>
-    <%= f.label :created_at_lteq, "and" %>
-    <%= f.datetime_select :created_at_lteq, include_blank: true %>   
-  </div>
-  <div class="field">
-    <%= f.label :department_eq, "Department" %>
-    <%= f.select :department_eq, ['HR', 'R&D', 'Finance', 'Support'], include_blank: true %>
-  </div>
-  <div class="field">
-    <%= f.label :email_cont, "Email" %>
-    <%= f.text_field :email_cont %>
-  </div>
-  <div class="field">
-    <%= f.label :phone_cont, "Phone" %>
-    <%= f.text_field :phone_cont %>
-  </div>
-  <div class="field">
-    <%= f.label :reason_cont, "Reason" %>
-    <%= f.text_field :reason_cont %>
-  </div>
-  <div class="actions"><%= f.submit "Search" %></div>
 <% end %>
 
-<%= link_to "Show all", admin_visitors_path %><br />
-
-Returned records # <%= @size_returned %><br />
-
-
-
-
-<div>
-  <%= paginate @visitors %>
-</div>
 <ul class="list-group">
   <% @visitors.each do |visitor| %>
     <li class="list-group-item">
@@ -75,7 +56,6 @@ Returned records # <%= @size_returned %><br />
   <% end %>
   
 </ul>
-
-<br>
-
-<%#= link_to 'New Visitor', new_admin_visitor_path %>
+<div>
+  <%= paginate @visitors %>
+</div>
