@@ -28,9 +28,10 @@
     <% end %>
     
     <div class="panel panel-default" style="background-color:#d8d6d6;">
-      <div class="panel-body text-left">
+      <div class="panel-body text-right">
         <% if admin_signed_in? %>
-            Currently siged in as <strong><%= current_admin.email %></strong> | <%= link_to "Sign out", destroy_admin_session_path, method: :delete %>
+            Currently siged in as: <strong><%= current_admin.email %></strong> | 
+            <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
         <% end %>
       </div>
     </div>    

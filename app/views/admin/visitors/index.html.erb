@@ -1,61 +1,81 @@
 <% content_for :filteringSection do %>
 
     <!-- RANSACK -->
-    <%= search_form_for @search, url: admin_visitors_path do |f| %>
-      <div class="field">
+    <%= search_form_for(@search, url: admin_visitors_path, :html => {:role => 'form'}) do |f| %>
+      <div class="field form-group">
         <%= f.label :name_cont, "Name contains" %><br />
-        <%= f.text_field :name_cont %>
+        <%= f.text_field :name_cont, class: 'form-control' %>
       </div>
-      <div class="field">
+      <div class="field form-group">
         <%= f.label :created_at_gteq, "Date/Time From" %><br />
-        <%= f.datetime_select :created_at_gteq, include_blank: true %><br />
+        <%= f.datetime_select :created_at_gteq, include_blank: true, class: 'form-control' %><br />
         <%= f.label :created_at_lteq, "Date/Time To" %><br />
-        <%= f.datetime_select :created_at_lteq, include_blank: true %>   
+        <%= f.datetime_select :created_at_lteq, include_blank: true, class: 'form-control' %>   
       </div>
-      <div class="field">
+      <div class="field form-group">
         <%= f.label :department_eq, "Department" %><br />
-        <%= f.select :department_eq, ['HR', 'R&D', 'Finance', 'Support'], include_blank: true %>
+        <%= f.select(:department_eq, ['HR', 'R&D', 'Finance', 'Support'], {include_blank: true}, {class: "form-control"}) %>
       </div>
-      <div class="field">
+      <div class="field form-group">
         <%= f.label :email_cont, "Email" %><br />
-        <%= f.text_field :email_cont %>
+        <%= f.text_field :email_cont, class: 'form-control' %>
       </div>
-      <div class="field">
+      <div class="field form-group">
         <%= f.label :phone_cont, "Phone" %><br />
-        <%= f.text_field :phone_cont %>
+        <%= f.text_field :phone_cont, class: 'form-control' %>
       </div>
-      <div class="field">
+      <div class="field form-group">
         <%= f.label :reason_cont, "Reason" %><br />
-        <%= f.text_field :reason_cont %>
+        <%= f.text_field :reason_cont, class: 'form-control' %>
       </div>
       <div class="actions">
-        <%= f.submit "Submit" %> or <%= link_to "Clear Filters", admin_visitors_path %>
+        <%= f.submit "Search", class: "btn btn-success btn-lg btn-block" %><br /> 
+        or <%= link_to "Clear Filters", admin_visitors_path, class: "btn btn-warning" %>
       </div>
     <% end %>
     
     <hr>
 
-    Returned records # <%= @size_returned %><br />
+    Returned <span class="label label-primary"><%= @size_returned %></span> records!<br />
 
 <% end %>
 
-<ul class="list-group">
-  <% @visitors.each do |visitor| %>
-    <li class="list-group-item">
-      <img src="<%= visitor.photo %>">
-      <%= visitor.name %>
-      <%= visitor.department %>
-      <%= visitor.email %>
-      <%= visitor.phone %>
-      <%= visitor.reason %>
-      <%= visitor.created_at %>
-      <%= link_to 'Show', admin_visitor_path(visitor) %>
-      <%= link_to 'Edit', edit_admin_visitor_path(visitor) %>
-      <%= link_to 'Destroy', admin_visitor_path(visitor), method: :delete, data: { confirm: 'Are you sure?' } %>
-    </li>
-  <% end %>
+<% if @size_returned == 0 %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        No Record Matched Your Search Criteria!
+      </div>
+    </div>
+<% else %>
+    <div class="panel panel-default">
+      <ul class="list-group">
+        <% @visitors.each do |visitor| %>
+          <li class="list-group-item">
+            <div class="btn-group pull-right">
+              <%= link_to admin_visitor_path(visitor), class: "btn btn-default btn-sm" do %>
+              <i class="fa fa-eye"></i>
+              <% end %>
+              <%= link_to edit_admin_visitor_path(visitor), class: "btn btn-default btn-sm" do %>
+                <i class="fa fa-edit"></i>
+              <% end %>
+              <%= link_to admin_visitor_path(visitor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-sm" do %>
+                <i class="fa fa-trash-o"></i>
+              <% end %>
+            </div>
+            
+            <img src="<%= visitor.photo %>" height="100" width="150" class="img-rounded">
+            <span class="lead"><%= visitor.name %></span>
+            <%= visitor.department %>
+            <%= visitor.email %>
+            <%= visitor.phone %>
+            <%= visitor.reason %>
+            <%= visitor.created_at.strftime("%d %B %Y at %I:%M %p") %>
+          </li>
+        <% end %>
+      </ul>
   
-</ul>
-<div>
-  <%= paginate @visitors %>
-</div>
+      <div class="panel-footer text-center">
+        <%= paginate @visitors %>
+      </div>
+    </div>
+<% end %>
