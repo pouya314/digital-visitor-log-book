@@ -42,37 +42,51 @@
 
 <% if @size_returned == 0 %>
     <div class="panel panel-default">
-      <div class="panel-body">
+      <div class="panel-body text-warning">
         No Record Matched Your Search Criteria!
       </div>
     </div>
 <% else %>
     <div class="panel panel-default">
-      <ul class="list-group">
-        <% @visitors.each do |visitor| %>
-          <li class="list-group-item">
-            <div class="btn-group pull-right">
-              <%= link_to admin_visitor_path(visitor), class: "btn btn-default btn-sm" do %>
-              <i class="fa fa-eye"></i>
-              <% end %>
-              <%= link_to edit_admin_visitor_path(visitor), class: "btn btn-default btn-sm" do %>
-                <i class="fa fa-edit"></i>
-              <% end %>
-              <%= link_to admin_visitor_path(visitor), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default btn-sm" do %>
-                <i class="fa fa-trash-o"></i>
-              <% end %>
-            </div>
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+             <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Reason</th>
+                <th>DateTime</th>
+                <th>Actions</th>
+             </tr>
+          </thead>
+          <tbody>
             
-            <img src="<%= visitor.photo %>" height="100" width="150" class="img-rounded">
-            <span class="lead"><%= visitor.name %></span>
-            <%= visitor.department %>
-            <%= visitor.email %>
-            <%= visitor.phone %>
-            <%= visitor.reason %>
-            <%= visitor.created_at.strftime("%d %B %Y at %I:%M %p") %>
-          </li>
-        <% end %>
-      </ul>
+            <% @visitors.each do |visitor| %>
+              <tr>
+                <td><img src="<%= visitor.photo %>" height="100" width="150" class="img-rounded"></td>
+                <td><span class="lead"><%= visitor.name %></span></td>
+                <td><%= visitor.department %></td>
+                <td><%= visitor.email %></td>
+                <td><%= visitor.phone %></td>
+                <td><%= visitor.reason %></td>
+                <td><%= visitor.created_at.strftime("%d %B %Y at %I:%M %p") %></td>
+                <td>
+                  <div class="btn-group pull-right">
+                    <%= link_to "Details", admin_visitor_path(visitor) %><br />
+                    <%= link_to "Edit", edit_admin_visitor_path(visitor) %><br />
+                    <%= link_to "Delete", admin_visitor_path(visitor), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  </div>
+                  
+                </td>
+              </tr>
+            <% end %>
+            
+          </tbody>
+        </table>
+      </div>      
   
       <div class="panel-footer text-center">
         <%= paginate @visitors %>
