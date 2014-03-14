@@ -7,3 +7,7 @@
     <%= link_to "PLEASE REGISTER HERE", new_visitor_path, class: "btn btn-primary btn-lg register-btn" %>
   </p>
 </div>
+
+<%= content_for :admin_section do %>
+  <%= link_to("admin login", admin_visitors_path, data: { no_turbolink: true }) %>
+<% end %>
