@@ -1,4 +1,6 @@
 FsRapidProto::Application.routes.draw do
+  resources :visits
+
   devise_for :admins, controllers: { sessions: "sessions" }
   get "index/welcome"
   resources :visitors, only: [:new, :create]

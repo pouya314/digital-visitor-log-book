@@ -1,0 +1,33 @@
+<h1>Listing visits</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Visitor</th>
+      <th>From company</th>
+      <th>Person to meet</th>
+      <th>Company to visit</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @visits.each do |visit| %>
+      <tr>
+        <td><%= visit.visitor %></td>
+        <td><%= visit.from_company %></td>
+        <td><%= visit.person_to_meet %></td>
+        <td><%= visit.company_to_visit %></td>
+        <td><%= link_to 'Show', visit %></td>
+        <td><%= link_to 'Edit', edit_visit_path(visit) %></td>
+        <td><%= link_to 'Destroy', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Visit', new_visit_path %>
