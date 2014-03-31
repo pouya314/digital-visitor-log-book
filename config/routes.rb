@@ -2,13 +2,13 @@ FsRapidProto::Application.routes.draw do
   resources :visits
 
   devise_for :admins, controllers: { sessions: "sessions" }
-  get "index/welcome"
   resources :visitors, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
+  get "index/welcome"
   root 'index#welcome'
   
   namespace :admin do
