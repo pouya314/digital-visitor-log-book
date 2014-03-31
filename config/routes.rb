@@ -9,6 +9,8 @@ FsRapidProto::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   get "index/welcome"
+  get "index/returning"
+  
   root 'index#welcome'
   
   namespace :admin do

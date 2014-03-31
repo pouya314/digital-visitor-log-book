@@ -1,0 +1,17 @@
+<%= search_form_for(@search, url: index_returning_path) do |f| %>
+  <div class="field">
+    <%= f.label :name_cont, "What's your name?" %>
+    <%= f.text_field :name_cont %>
+  </div>
+  <div class="actions"><%= f.submit "Search" %></div>
+<% end %>
+
+<% if @visitors %>
+  <% if @visitors.empty? %>
+    No visitor found with that name! please try again.
+  <% else %>
+    <% @visitors.each do |visitor| %>
+      <%= visitor.name %> <a href="#">this is me</a><br>
+    <% end %>
+  <% end %>
+<% end %>
