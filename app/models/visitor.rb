@@ -1,4 +1,6 @@
 class Visitor < ActiveRecord::Base
-  # validates :name, :photo, :department, :email, :phone, :reason, presence: true
   has_many :visits, :dependent => :destroy
+  accepts_nested_attributes_for :visits
+  
+  validates :name, :photo, presence: true
 end

@@ -48,27 +48,25 @@
     <strong>Full Name</strong><br>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <strong>Email Address</strong><br>
-    <%= f.text_field :email, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <strong>Phone Number</strong><br>
-    <%= f.text_field :phone, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <strong>Department</strong><br>
-    <%#= f.text_field :department %>
-    <%#= f.select :department, ['HR', 'R&D', 'Finance', 'Support'], include_blank: true, class: 'form-control' %>
-    <%= f.select(:department, ['HR', 'R&D', 'Finance', 'Support'], {include_blank: true}, {class: "form-control"}) %>
-    
-  </div>
-  <div class="form-group">
-    <strong>Reason of visit</strong><br>
-    <%= f.text_area :reason, class: 'form-control' %>
-  </div>
+  
+  
+  <%= f.fields_for :visits do |visit_form| %>
+    <div class="form-group">
+      <strong>From Company</strong><br>
+      <%= visit_form.text_field :from_company, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <strong>Person to meet</strong><br>
+      <%= visit_form.text_field :person_to_meet, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <strong>Company to visit</strong><br>
+      <%= visit_form.select(:company_to_visit, ['F-Secure', 'Home Guru', 'Besedo'], {include_blank: true}, {class: "form-control"}) %>
+    </div>
+  <% end %>
+
   <div class="actions">
-    <%= f.submit class: "btn btn-success btn-lg btn-block" %>
+    <%= f.submit "Submit", class: "btn btn-success btn-lg btn-block" %>
   </div>
 <% end %>
 
