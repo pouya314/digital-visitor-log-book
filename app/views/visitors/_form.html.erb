@@ -1,12 +1,12 @@
 <%= form_for(@visitor, :html => {:role => 'form'}) do |f| %>
   <% if @visitor.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@visitor.errors.count, "error") %> prohibited this visitor from being saved:</h2>
+      <h2>Error</h2>
 
       <ul>
-      <% @visitor.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <li>
+          All fields are mandatory!
+        </li>
       </ul>
     </div>
   <% end %>
