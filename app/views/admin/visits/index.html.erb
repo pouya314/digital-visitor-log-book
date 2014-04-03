@@ -1,4 +1,44 @@
+<% content_for :filteringSection do %>
 
+    <!-- RANSACK -->
+    <%= search_form_for(@search, url: admin_visitors_path, :html => {:role => 'form'}) do |f| %>
+      <div class="field form-group">
+        <%= f.label :name_cont, "Name contains" %><br />
+        <%= f.text_field :name_cont, class: 'form-control' %>
+      </div>
+      <div class="field form-group">
+        <%= f.label :created_at_gteq, "Date/Time From" %><br />
+        <%= f.datetime_select :created_at_gteq, include_blank: true, class: 'form-control' %><br />
+        <%= f.label :created_at_lteq, "Date/Time To" %><br />
+        <%= f.datetime_select :created_at_lteq, include_blank: true, class: 'form-control' %>   
+      </div>
+      <div class="field form-group">
+        <%= f.label :department_eq, "Department" %><br />
+        <%= f.select(:department_eq, ['HR', 'R&D', 'Finance', 'Support'], {include_blank: true}, {class: "form-control"}) %>
+      </div>
+      <div class="field form-group">
+        <%= f.label :email_cont, "Email" %><br />
+        <%= f.text_field :email_cont, class: 'form-control' %>
+      </div>
+      <div class="field form-group">
+        <%= f.label :phone_cont, "Phone" %><br />
+        <%= f.text_field :phone_cont, class: 'form-control' %>
+      </div>
+      <div class="field form-group">
+        <%= f.label :reason_cont, "Reason" %><br />
+        <%= f.text_field :reason_cont, class: 'form-control' %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Search", class: "btn btn-success btn-lg btn-block" %><br /> 
+        or <%= link_to "Clear Filters", admin_visitors_path, class: "btn btn-warning" %>
+      </div>
+    <% end %>
+    
+    <hr>
+
+    Returned <span class="label label-primary"><%= @size_returned %></span> records!<br />
+
+<% end %>
 
 <% if @visits.empty? %>
     <div class="panel panel-default">
