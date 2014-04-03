@@ -15,8 +15,7 @@ FsRapidProto::Application.routes.draw do
   root 'index#welcome'
   
   namespace :admin do
-    resources :visitors, except: [:new, :create]
-    resources :visits, except: [:new, :create]
+    resources :visits, only: [:index, :show]
   end
   
 

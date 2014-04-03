@@ -1,0 +1,51 @@
+
+
+<% if @visits.empty? %>
+    <div class="panel panel-default">
+      <div class="panel-body text-warning">
+        No Record Matched Your Search Criteria!
+      </div>
+    </div>
+<% else %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <table class="table table-hover">
+          <thead>
+             <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>From Company</th>
+                <th>Meeting who</th>
+                <th>Visiting which company</th>
+                <th>DateTime</th>
+                <th>Actions</th>
+             </tr>
+          </thead>
+          <tbody>
+            
+            <% @visits.each do |visit| %>
+              <tr>
+                <td><img src="<%= visit.visitor.photo %>" height="100" width="150" class="img-rounded"></td>
+                <td><span class="lead"><%= visit.visitor.name %></span></td>
+                <td><%= visit.from_company %></td>
+                <td><%= visit.person_to_meet %></td>
+                <td><%= visit.company_to_visit %></td>
+                <td><%= visit.created_at.strftime("%d %B %Y at %I:%M %p") %></td>
+                <td>
+                  <div class="btn-group pull-right">
+                    <%= link_to "Details", admin_visit_path(visit) %><br />
+                  </div>
+                  
+                </td>
+              </tr>
+            <% end %>
+            
+          </tbody>
+        </table>
+      </div>      
+  
+      <div class="panel-footer text-center">
+        <%#= paginate @visitors %>
+      </div>
+    </div>
+<% end %>

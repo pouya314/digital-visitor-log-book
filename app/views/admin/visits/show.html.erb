@@ -1,0 +1,32 @@
+<p>
+  <img src="<%= @visit.visitor.photo %>">
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @visit.visitor.name %>
+</p>
+
+<p>
+  <strong>Date and Time of Visit:</strong>
+  <%= @visit.created_at %>
+</p>
+
+
+<p>
+  <strong>From Company:</strong>
+  <%= @visit.from_company %>
+</p>
+
+<p>
+  <strong>Meeting who:</strong>
+  <%= @visit.person_to_meet %>
+</p>
+
+<p>
+  <strong>Visiting which company:</strong>
+  <%= @visit.company_to_visit %>
+</p>
+
+<br>
+<%= link_to 'Back', admin_visits_path %>
