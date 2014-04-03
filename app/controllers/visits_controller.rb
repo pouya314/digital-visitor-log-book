@@ -14,6 +14,7 @@ class VisitsController < ApplicationController
 
   # GET /visits/new
   def new
+    @visitor = Visitor.find(params[:data])
     @visit = Visit.new
   end
 
@@ -25,10 +26,11 @@ class VisitsController < ApplicationController
   # POST /visits.json
   def create
     @visit = Visit.new(visit_params)
+    @visitor = Visitor.find(@visit.visitor_id)
 
     respond_to do |format|
       if @visit.save
-        format.html { redirect_to @visit, notice: 'Visit was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Thank you for registering your details. You may now proceed!' }
         format.json { render action: 'show', status: :created, location: @visit }
       else
         format.html { render action: 'new' }

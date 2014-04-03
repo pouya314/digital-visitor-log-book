@@ -11,10 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :visitor_id %><br>
-    <%= f.text_field :visitor_id %>
+  <!-- create a new visit record the the below visitor (id given) -->
+  <div class="field" style="display:none;">
+    <input id="visit_visitor_id" name="visit[visitor_id]" type="text" autocomplete="off" value="<%= @visitor.id %>">
   </div>
+  
+  <div>
+    <img src="<%= @visitor.photo %>" height="100" width="140" class="img-rounded"><br />
+    <%= @visitor.name %>
+  </div>
+  
   <div class="field">
     <%= f.label :from_company %><br>
     <%= f.text_field :from_company %>
@@ -25,8 +31,9 @@
   </div>
   <div class="field">
     <%= f.label :company_to_visit %><br>
-    <%= f.text_field :company_to_visit %>
+    <%= f.select(:company_to_visit, ['F-Secure', 'Home Guru', 'Besedo'], {include_blank: true}) %>
   </div>
+  <br>
   <div class="actions">
     <%= f.submit %>
   </div>

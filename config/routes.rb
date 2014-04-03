@@ -1,8 +1,9 @@
 FsRapidProto::Application.routes.draw do
-  resources :visits
 
   devise_for :admins, controllers: { sessions: "sessions" }
+
   resources :visitors, only: [:new, :create]
+  resources :visits, only: [:new, :create]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
@@ -15,6 +16,7 @@ FsRapidProto::Application.routes.draw do
   
   namespace :admin do
     resources :visitors, except: [:new, :create]
+    resources :visits, except: [:new, :create]
   end
   
 

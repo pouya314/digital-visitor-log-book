@@ -11,7 +11,9 @@
     No visitor found with that name! please try again.
   <% else %>
     <% @visitors.each do |visitor| %>
-      <%= visitor.name %> <a href="#">this is me</a><br>
+      <img src="<%= visitor.photo %>" height="100" width="140" class="img-rounded">
+      <%= visitor.name %>
+      <%= link_to "This is me", { :controller => 'visits', :action => "new", :data => visitor.id } %>
     <% end %>
   <% end %>
 <% end %>
