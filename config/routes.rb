@@ -1,6 +1,6 @@
 FsRapidProto::Application.routes.draw do
 
-  devise_for :admins, controllers: { sessions: "sessions" }
+  devise_for :admins, controllers: { sessions: "sessions" }, skip: [:registrations, :passwords]
 
   resources :visitors, only: [:new, :create]
   resources :visits, only: [:new, :create]
@@ -11,9 +11,9 @@ FsRapidProto::Application.routes.draw do
   # You can have the root of your site routed with "root"
   get "index/welcome"
   get "index/returning"
-  
+
   root 'index#welcome'
-  
+
   namespace :admin do
     resources :visits, only: [:index, :show] do
       member do
@@ -21,7 +21,7 @@ FsRapidProto::Application.routes.draw do
       end
     end
   end
-  
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
