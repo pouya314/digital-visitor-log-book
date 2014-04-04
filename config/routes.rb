@@ -1,6 +1,6 @@
 FsRapidProto::Application.routes.draw do
 
-  devise_for :admins, controllers: { sessions: "sessions" }, skip: [:registrations, :passwords]
+  devise_for :admins, controllers: { sessions: "sessions" }, skip: [:registrations]#, :passwords]
 
   resources :visitors, only: [:new, :create]
   resources :visits, only: [:new, :create]
