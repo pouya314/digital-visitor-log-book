@@ -21,13 +21,13 @@
 
           <div id="can" style="display:none;">
             <canvas id="canvas"></canvas>
-            <div id="actionbtns">  
+            <div id="actionbtns">
               <a id="ok" class="btn btn-success btn-looking-good"><i class="fa fa-thumbs-up fa-2x"></i> LOOKING GOOD</a>
               <a id="isnotok" class="btn btn-danger btn-one-more-time"><i class="fa fa-thumbs-down fa-2x"></i> ONCE MORE</a>
             </div>
           </div>
         </div>
-        
+
         <div class="col-md-6">
           <div id="currently-saved-photo">
             <% unless @visitor.photo == "" or @visitor.photo == nil %>
@@ -43,13 +43,13 @@
     <%= f.label :photo %><br>
     <%= f.text_area :photo %>
   </div>
-  
+
   <div class="form-group">
     <strong>Full Name</strong><br>
     <%= f.text_field :name, class: 'form-control' %>
   </div>
-  
-  
+
+
   <%= f.fields_for :visits do |visit_form| %>
     <div class="form-group">
       <strong>From Company</strong><br>
@@ -66,7 +66,7 @@
   <% end %>
 
   <div class="actions">
-    <%= f.submit "Submit", class: "btn btn-success btn-lg btn-block" %>
+    <%= f.submit "Submit", class: "btn btn-success btn-lg btn-block", data: { disable_with: 'Processing...' } %>
   </div>
 <% end %>
 
@@ -128,12 +128,12 @@
         takepicture();
       ev.preventDefault();
     }, false);
-    
+
     $( "#ok" ).click(function() {
       var data = canvas.toDataURL('image/png');
       $( "textarea#visitor_photo" ).val(data);
       $( "#actionbtns" ).replaceWith( "<br /><p class=\"bg-success text-center good-image\">Done!</p>" );
-      
+
       var existing = document.getElementById('currently-saved-photo');
       if (existing !== null) $( "#currently-saved-photo" ).hide();
     });

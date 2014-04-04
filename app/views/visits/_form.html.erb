@@ -8,7 +8,7 @@
           All fields are mandatory!
         </li>
       </ul>
-      
+
     </div>
   <% end %>
 
@@ -16,12 +16,12 @@
   <div class="field" style="display:none;">
     <input id="visit_visitor_id" name="visit[visitor_id]" type="text" autocomplete="off" value="<%= @visitor.id %>">
   </div>
-  
+
   <div>
     <img src="<%= @visitor.photo %>" height="100" width="140" class="img-rounded"><br />
     <%= @visitor.name %>
   </div>
-  
+
   <div class="field">
     <%= f.label :from_company %><br>
     <%= f.text_field :from_company %>
@@ -36,6 +36,6 @@
   </div>
   <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Submit", data: { disable_with: 'Processing...' } %>
   </div>
 <% end %>

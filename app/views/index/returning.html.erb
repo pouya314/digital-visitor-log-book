@@ -3,7 +3,7 @@
     <%= f.label :name_cont, "What's your name?" %>
     <%= f.text_field :name_cont %>
   </div>
-  <div class="actions"><%= f.submit "Search" %></div>
+  <div class="actions"><%= f.submit "Search", data: { disable_with: 'Processing...' } %></div>
 <% end %>
 
 <% if @visitors %>

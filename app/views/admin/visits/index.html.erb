@@ -25,8 +25,8 @@
         <%= f.select(:company_to_visit_cont, ['F-Secure', 'Home Guru', 'Besedo'], {include_blank: true}, {class: "form-control"}) %>
       </div>
       <div class="actions">
-        <%= f.submit "Search", class: "btn btn-success btn-lg btn-block" %><br />
-        or <%= link_to "Clear Filters", admin_visits_path, class: "btn btn-warning" %>
+        <%= f.submit "Search", class: "btn btn-success btn-lg btn-block", data: { disable_with: 'Processing...' } %><br />
+        or <%= link_to "Clear Filters", admin_visits_path, class: "btn btn-warning", data: { disable_with: 'Processing...' } %>
       </div>
     <% end %>
 
@@ -87,7 +87,7 @@
                     <%= link_to "Details", admin_visit_path(visit) %>
                     <div id="checkout-section-for-<%= visit.id %>">
                       <% if visit.checkout_time.nil? %>
-                        <%= button_to "Checkout", doCheckout_admin_visit_path(visit), remote: true, data: { disable_with: 'wait...' } %>
+                        <%= button_to "Checkout", doCheckout_admin_visit_path(visit), remote: true, data: { disable_with: 'Processing...' } %>
                       <% else %>
                         <%= render 'checkout_successful' %>
                       <% end %>
