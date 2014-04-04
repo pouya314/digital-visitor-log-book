@@ -1,10 +1,10 @@
 <% content_for :filteringSection do %>
 
     <!-- RANSACK -->
-    <%= search_form_for(@search, url: admin_visitors_path, :html => {:role => 'form'}) do |f| %>
+    <%= search_form_for(@search, url: admin_visits_path, :html => {:role => 'form'}) do |f| %>
       <div class="field form-group">
-        <%= f.label :name_cont, "Name contains" %><br />
-        <%= f.text_field :name_cont, class: 'form-control' %>
+        <%= f.label :visitor_name_cont, "Name contains" %><br />
+        <%= f.text_field :visitor_name_cont, class: 'form-control' %>
       </div>
       <div class="field form-group">
         <%= f.label :created_at_gteq, "Date/Time From" %><br />
@@ -13,24 +13,20 @@
         <%= f.datetime_select :created_at_lteq, include_blank: true, class: 'form-control' %>   
       </div>
       <div class="field form-group">
-        <%= f.label :department_eq, "Department" %><br />
-        <%= f.select(:department_eq, ['HR', 'R&D', 'Finance', 'Support'], {include_blank: true}, {class: "form-control"}) %>
+        <%= f.label :from_company_cont, "From Company" %><br />
+        <%= f.text_field :from_company_cont, class: 'form-control' %>
       </div>
       <div class="field form-group">
-        <%= f.label :email_cont, "Email" %><br />
-        <%= f.text_field :email_cont, class: 'form-control' %>
+        <%= f.label :person_to_meet_cont, "Meeting who" %><br />
+        <%= f.text_field :person_to_meet_cont, class: 'form-control' %>
       </div>
       <div class="field form-group">
-        <%= f.label :phone_cont, "Phone" %><br />
-        <%= f.text_field :phone_cont, class: 'form-control' %>
-      </div>
-      <div class="field form-group">
-        <%= f.label :reason_cont, "Reason" %><br />
-        <%= f.text_field :reason_cont, class: 'form-control' %>
+        <%= f.label :company_to_visit_cont, "Company to visit" %><br />
+        <%= f.select(:company_to_visit_cont, ['F-Secure', 'Home Guru', 'Besedo'], {include_blank: true}, {class: "form-control"}) %>
       </div>
       <div class="actions">
         <%= f.submit "Search", class: "btn btn-success btn-lg btn-block" %><br /> 
-        or <%= link_to "Clear Filters", admin_visitors_path, class: "btn btn-warning" %>
+        or <%= link_to "Clear Filters", admin_visits_path, class: "btn btn-warning" %>
       </div>
     <% end %>
     
@@ -74,6 +70,11 @@
                 <td>
                   <div class="btn-group pull-right">
                     <%= link_to "Details", admin_visit_path(visit) %><br />
+                    <% if visit.checkout_time.nil? %>
+                      <%= button_to "Checkout" %>
+                    <% else %>
+                      <span class="label label-success">Checked out at <%= visit.checkout_time.strftime("%d %B %Y at %I:%M %p") %>!</span>
+                    <% end %>
                   </div>
                   
                 </td>
@@ -85,7 +86,7 @@
       </div>      
   
       <div class="panel-footer text-center">
-        <%#= paginate @visitors %>
+        <%= paginate @visits %>
       </div>
     </div>
 <% end %>
