@@ -17,7 +17,10 @@
       <div class="panel-body text-right">
         <% if admin_signed_in? %>
             Currently siged in as: <strong><%= current_admin.email %></strong> |
-            <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
+            <span class="btn-group">
+              <%= link_to "edit password", edit_admin_registration_path, method: :get, class: "btn btn-primary btn-sm" %>
+              <%= link_to "Sign out", destroy_admin_session_path, method: :delete, class: "btn btn-danger btn-sm" %>
+            </span>
         <% end %>
       </div>
     </div>
