@@ -8,8 +8,8 @@
 </p>
 
 <p>
-  <strong>Date and Time of Visit:</strong>
-  <%= @visit.created_at %>
+  <strong>Date and Time of Arrival:</strong>
+  <%= @visit.created_at.strftime("%d %B %Y at %I:%M %p") %>
 </p>
 
 
@@ -26,6 +26,15 @@
 <p>
   <strong>Visiting which company:</strong>
   <%= @visit.company_to_visit %>
+</p>
+
+<p>
+  <strong>Checkout:</strong>
+  <% if @visit.checkout_time.nil? %>
+    <span class="label label-danger">Not checked out yet!</span>
+  <% else %>
+    <span class="label label-success"><%= @visit.checkout_time.strftime("%d %B %Y at %I:%M %p") %></span>
+  <% end %>
 </p>
 
 <br>
