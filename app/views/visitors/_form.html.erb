@@ -52,15 +52,15 @@
 
   <%= f.fields_for :visits do |visit_form| %>
     <div class="form-group">
-      <strong>From Company</strong><br>
+      <strong>Which company are you from?</strong><br>
       <%= visit_form.text_field :from_company, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <strong>Person to meet</strong><br>
+      <strong>Who are you meeting?</strong><br>
       <%= visit_form.text_field :person_to_meet, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <strong>Company to visit</strong><br>
+      <strong>Please choose the company you are visiting:</strong><br>
       <%= visit_form.select(:company_to_visit, ['F-Secure', 'Home Guru', 'Besedo'], {include_blank: true}, {class: "form-control"}) %>
     </div>
   <% end %>
