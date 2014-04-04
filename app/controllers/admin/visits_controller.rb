@@ -3,7 +3,8 @@ class Admin::VisitsController < ApplicationController
 
   before_action :set_visit, only: [:show]
   before_action :authenticate_admin!
-  
+
+
   def index
     @search = Visit.search(params[:q])
     @size_returned = @search.result(distinct: true).size
@@ -15,8 +16,14 @@ class Admin::VisitsController < ApplicationController
   end
 
 
+  def doCheckout
+    @visit = Visit.find(params[:id])
+    @visit.update(checkout_time: Time.now)
+  end
+
+
   private
-  
+
     def set_visit
       @visit = Visit.find(params[:id])
     end

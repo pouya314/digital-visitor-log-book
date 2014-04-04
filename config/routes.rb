@@ -15,7 +15,11 @@ FsRapidProto::Application.routes.draw do
   root 'index#welcome'
   
   namespace :admin do
-    resources :visits, only: [:index, :show]
+    resources :visits, only: [:index, :show] do
+      member do
+        post 'doCheckout'
+      end
+    end
   end
   
 

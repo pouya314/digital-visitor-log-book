@@ -10,7 +10,7 @@
         <%= f.label :created_at_gteq, "Date/Time From" %><br />
         <%= f.datetime_select :created_at_gteq, include_blank: true, class: 'form-control' %><br />
         <%= f.label :created_at_lteq, "Date/Time To" %><br />
-        <%= f.datetime_select :created_at_lteq, include_blank: true, class: 'form-control' %>   
+        <%= f.datetime_select :created_at_lteq, include_blank: true, class: 'form-control' %>
       </div>
       <div class="field form-group">
         <%= f.label :from_company_cont, "From Company" %><br />
@@ -25,11 +25,11 @@
         <%= f.select(:company_to_visit_cont, ['F-Secure', 'Home Guru', 'Besedo'], {include_blank: true}, {class: "form-control"}) %>
       </div>
       <div class="actions">
-        <%= f.submit "Search", class: "btn btn-success btn-lg btn-block" %><br /> 
+        <%= f.submit "Search", class: "btn btn-success btn-lg btn-block" %><br />
         or <%= link_to "Clear Filters", admin_visits_path, class: "btn btn-warning" %>
       </div>
     <% end %>
-    
+
     <hr>
 
     Returned <span class="label label-primary"><%= @size_returned %></span> records!<br />
@@ -58,7 +58,7 @@
              </tr>
           </thead>
           <tbody>
-            
+
             <% @visits.each do |visit| %>
               <tr>
                 <td><img src="<%= visit.visitor.photo %>" height="100" width="150" class="img-rounded"></td>
@@ -69,22 +69,24 @@
                 <td><%= visit.created_at.strftime("%d %B %Y at %I:%M %p") %></td>
                 <td>
                   <div class="btn-group pull-right">
-                    <%= link_to "Details", admin_visit_path(visit) %><br />
-                    <% if visit.checkout_time.nil? %>
-                      <%= button_to "Checkout" %>
-                    <% else %>
-                      <span class="label label-success">Checked out at <%= visit.checkout_time.strftime("%d %B %Y at %I:%M %p") %>!</span>
-                    <% end %>
+                    <%= link_to "Details", admin_visit_path(visit) %>
+                    <div id="checkout-section-for-<%= visit.id %>">
+                      <% if visit.checkout_time.nil? %>
+                        <%= button_to "Checkout", doCheckout_admin_visit_path(visit), remote: true, data: { disable_with: 'wait...' } %>
+                      <% else %>
+                        <%= render 'checkout_successful' %>
+                      <% end %>
+                    <div>
                   </div>
-                  
+
                 </td>
               </tr>
             <% end %>
-            
+
           </tbody>
         </table>
-      </div>      
-  
+      </div>
+
       <div class="panel-footer text-center">
         <%= paginate @visits %>
       </div>
