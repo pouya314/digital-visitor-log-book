@@ -8,7 +8,7 @@ class Admin::VisitsController < ApplicationController
   def index
     @search = Visit.search(params[:q])
     @size_returned = @search.result(distinct: true).size
-    @visits = @search.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5)
+    @visits = @search.result(distinct: true).order(created_at: :desc).page(params[:page]).per(20)
   end
 
 
