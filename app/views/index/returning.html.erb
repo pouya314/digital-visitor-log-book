@@ -1,21 +1,31 @@
+<div class="page-header">
+  <h2 class="text-primary">Registration <small></small></h2>
+</div>
+
 <%= search_form_for(@search, url: index_returning_path) do |f| %>
-  <div class="field">
-    <%= f.label :name_cont, "What's your name?" %>
-    <%= f.text_field :name_cont %>
-  </div>
-  <div class="actions"><%= f.submit "Search", data: { disable_with: 'Processing...' } %></div>
+  Enter your name &rarr; <%= f.text_field :name_cont %> <%= f.submit "Search", class: "btn btn-primary", data: { disable_with: 'Processing...' } %>
 <% end %>
 
-<% if @visitors %>
-  <% if @visitors.empty? %>
-    No visitor found with that name! please try again.
-  <% else %>
-    <% @visitors.each do |visitor| %>
-      <img src="<%= visitor.photo %>" height="100" width="140" class="img-rounded">
-      <%= visitor.name %>
-      <%= link_to "This is me", { :controller => 'visits', :action => "new", :data => visitor.id } %>
+<br>
+
+<div class="panel panel-info">
+  <% if @visitors %>
+    <% if @visitors.empty? %>
+      <div class="panel-body">
+        <span class="text-danger"><i class="fa fa-exclamation-triangle"></i> No visitor found with that name! please try again.</span>
+      </div>
+    <% else %>
+      <table cellspacing="5" cellpadding="5" class="table table-hover">
+        <% @visitors.each do |visitor| %>
+          <tr>
+            <td><img src="<%= visitor.photo %>" height="100" width="140" class="img-rounded"></td>
+            <td class="center-stuff"><span class="lead"><%= visitor.name %></span></td>
+            <td class="center-stuff"><%= link_to "This is me", { :controller => 'visits', :action => "new", :data => visitor.id }, :class => "btn btn-success pull-right", data: { disable_with: 'Please wait...' } %></td>
+          </tr>
+        <% end %>
+      </table>
     <% end %>
   <% end %>
-<% end %>
-<br>
-<%= link_to "Back", root_path %>
+</div>
+
+<%= link_to "Back".html_safe, root_path %>
