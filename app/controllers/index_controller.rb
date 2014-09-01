@@ -1,5 +1,5 @@
 class IndexController < ApplicationController
-  http_basic_authenticate_with name: ENV["MASTER_USER"], password: ENV["MASTER_PASS"], except: [:welcome]
+  # http_basic_authenticate_with name: ENV["MASTER_USER"], password: ENV["MASTER_PASS"], except: [:welcome]
 
 
   def welcome
