@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  visitor_id: 
-  from_company: MyString
-  person_to_meet: MyString
-  company_to_visit: MyString
+MikeVisit01:
+  visitor: Mike
+  from_company: Basecamp
+  person_to_meet: Jane
+  company_to_visit: F-Secure
 
-two:
-  visitor_id: 
-  from_company: MyString
-  person_to_meet: MyString
-  company_to_visit: MyString
+MikeVisit02:
+  visitor: Mike
+  from_company: Basecamp
+  person_to_meet: Grace
+  company_to_visit: Besedo
