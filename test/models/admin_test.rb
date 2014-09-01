@@ -1,5 +1,12 @@
 require 'test_helper'
 
+# 
+# Note:
+# ––––––
+# Admin model (or any other authenticatable model provided by devise) is probably extensively tested by devise itself.
+# including the following tests just for the sake of testing. :)
+# 
+
 class AdminTest < ActiveSupport::TestCase
   test "email and password fields are both mandatory" do
     new_admin = Admin.new
