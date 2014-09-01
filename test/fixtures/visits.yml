@@ -11,3 +11,9 @@ MikeVisit02:
   from_company: Basecamp
   person_to_meet: Grace
   company_to_visit: Besedo
+
+JoeVisit01:
+  visitor: Joe
+  from_company: Microsoft
+  person_to_meet: Gary
+  company_to_visit: Home Guru
