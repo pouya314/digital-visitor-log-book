@@ -1,5 +1,5 @@
 class VisitsController < ApplicationController
-  http_basic_authenticate_with name: ENV["MASTER_USER"], password: ENV["MASTER_PASS"]
+  # http_basic_authenticate_with name: ENV["MASTER_USER"], password: ENV["MASTER_PASS"]
   
 
   def new
