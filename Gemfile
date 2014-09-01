@@ -54,7 +54,8 @@ gem "kaminari"
 
 # HEROKU Gems
 gem 'rails_12factor', group: :production
-ruby "2.1.1"
+
+ruby "2.1.2"
 
 # now using the kick-ass unicorn server..
 gem 'unicorn'
