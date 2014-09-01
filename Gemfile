@@ -61,3 +61,5 @@ ruby "2.1.2"
 gem 'unicorn'
 
 gem 'newrelic_rpm'
+
+gem 'capybara', group: :test
