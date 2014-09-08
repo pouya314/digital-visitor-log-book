@@ -17,6 +17,7 @@ end
 
 
 class ActionDispatch::IntegrationTest
+  fixtures :all
   # Make the Capybara DSL available in all integration tests
   include Capybara::DSL
   
