@@ -27,4 +27,15 @@ class PublicFacingPagesTest < ActionDispatch::IntegrationTest
     click_link('Back')
     assert_equal root_path, current_path
   end
+  
+  test "first time visitor registration page" do
+    visit root_url
+    click_link('First time visitor')
+    assert_equal new_visitor_path, current_path
+    assert has_selector?('div.page-header')
+    within('div.page-header') do
+      assert has_content? 'Registration'
+    end
+    assert page.has_selector?('form.new_visitor')
+  end
 end
