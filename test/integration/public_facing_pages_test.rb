@@ -38,4 +38,9 @@ class PublicFacingPagesTest < ActionDispatch::IntegrationTest
     end
     assert page.has_selector?('form.new_visitor')
   end
+  
+  test "admin link on root url" do
+    visit root_url
+    assert has_link?('admin login')
+  end
 end
