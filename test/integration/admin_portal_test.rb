@@ -31,4 +31,12 @@ class AdminPortalTest < ActionDispatch::IntegrationTest
       assert has_content? '1'
     end
   end
+  
+  test "searching for a visitor who doesn't exist" do
+    login_as_admin
+    fill_in('q_visitor_name_cont', :with => "blahblah")
+    click_button('Search')
+    
+    assert page.has_content? 'No Record Matched Your Search Criteria'
+  end
 end
